@@ -1,0 +1,83 @@
+<launch>
+    <!-- Arguments -->
+    <param name="use_sim_time" value="true"/>
+
+    <!-- Run Map Server -->
+    <arg name="map_file" default="$(find slam_nav)/maps/built_map.yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" required="true">
+        <param name="frame_id" value="/map" />
+    </node>
+
+    <!-- Transformations -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="camera2lidar" args="-0.675 -0.008 0.96 0 0 0 camera_pose_frame os1_sensor" />
+
+    <!-- PointCloud2LaserScan Node -->
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+        <remap from="cloud_in" to="/os1_cloud_node/points"/>
+        <rosparam>
+        target_frame: os1_lidar
+        transform_tolerance: 0.01
+        min_height: -1.5
+        max_height: 2.0
+        
+        angle_min: -3.14
+        angle_max: 3.14
+        angle_increment: 0.0087
+        scan_time: 0.3333
+        range_min: 0.45
+        range_max: 120.0
+        use_inf: true
+        
+        #concurrency_level affects number of pc queued for processing and the number of threadsused
+        # 0: Detect number of cores
+        # 1: Single threaded
+        # 2: inf : Parallelism level
+        concurrency_level: 1
+        </rosparam>
+    </node>
+
+    <!-- AMCL Navigation -->
+    <node pkg="amcl" type="amcl" name="amcl">
+        <remap from="scan" to="/scan" />
+        <remap from="odom" to="/camera/odom/sample" />
+        <!-- Publish scans from best pose at a max of 10 Hz -->
+        <param name="odom_model_type" value="diff"/>
+        <param name="odom_frame_id" value="camera_odom_frame" />
+        <param name="base_frame_id" value="camera_pose_frame" />
+        <param name="global_frame_id" value="map" />
+        <param name="use_map_topic" value="true" />
+        <param name="odom_alpha5" value="0.1"/>
+        <param name="transform_tolerance" value="0.2" />
+        <param name="gui_publish_rate" value="10.0"/>
+        <param name="laser_max_beams" value="30"/>
+        <param name="min_particles" value="500"/>
+        <param name="max_particles" value="5000"/>
+        <param name="kld_err" value="0.05"/>
+        <param name="kld_z" value="0.99"/>
+        <param name="odom_alpha1" value="0.2"/>
+        <param name="odom_alpha2" value="0.2"/>
+        <!-- translation std dev, m -->
+        <param name="odom_alpha3" value="0.8"/>
+        <param name="odom_alpha4" value="0.2"/>
+        <param name="laser_z_hit" value="0.5"/>
+        <param name="laser_z_short" value="0.05"/>
+        <param name="laser_z_max" value="0.05"/>
+        <param name="laser_z_rand" value="0.5"/>
+        <param name="laser_sigma_hit" value="0.2"/>
+        <param name="laser_lambda_short" value="0.1"/>
+        <param name="laser_lambda_short" value="0.1"/>
+        <param name="laser_model_type" value="likelihood_field"/>
+        <!-- <param name="laser_model_type" value="beam"/> -->
+        <param name="laser_likelihood_max_dist" value="2.0"/>
+        <param name="update_min_d" value="0.2"/>
+        <param name="update_min_a" value="0.5"/>
+        <param name="resample_interval" value="1"/>
+        <param name="transform_tolerance" value="0.5"/>
+        <param name="recovery_alpha_slow" value="0.0"/>
+        <param name="recovery_alpha_fast" value="0.0"/>
+    </node>
+
+    <!-- launch rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find slam_nav)/rviz/nav.rviz" />
+
+</launch>
