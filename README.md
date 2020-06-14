@@ -12,6 +12,13 @@ Make sure to source the catkin_ws. Check if the `slam_nav` package is properly s
 roscd slam_nav/
 ```
 
+Add `data/` to the package:
+```
+roscd slam_nav/
+mkdir data
+```
+Add all bagfiles to this folder.
+
 ## Launching Gmapping using Visual Odom
 *Terminal 1*
 ```
