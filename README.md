@@ -34,6 +34,10 @@ rosrun map_server map_saver -f PATH_TO_CATKIN_WS/src/slam_nav/maps/NAME_OF_MAP_F
 Example:
 rosrun map_server map_saver -f PATH_TO_CATKIN_WS/src/slam_nav/maps/built_map_09_bag 
 ```
+If Launching Gmapping using Optitrack Odom:
+```
+roslaunch slam_nav build_map_o.launch 
+```
 
 ## Launching AMCL using Visual Odom
 *Terminal 1*
@@ -47,12 +51,9 @@ If no `map_file` is spcified then it defaults to `PATH_TO_CATKIN_WS/src/slam_nav
 
 *Terminal 2*
 ```
-rosbag play --clock PATH_TO_CATKIN_WS/src/slam_nav/data/2020-05-14-16-09-36-traj1-os1-t265-pix.bag 
+rosbag play --clock PATH_TO_CATKIN_WS/src/slam_nav/data/2020-05-14-16-14-37-traj2-os1-t265-pix.bag
 ```
+The Result should look something like this:
 
-
-## Launching Gmapping using Optitrack Odom
-```
-roslaunch slam_nav build_map_o.launch 
-```
+<img src= https://github.com/trns1997/slam_nav/blob/master/media/loc.gif/>
 
