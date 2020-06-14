@@ -57,3 +57,31 @@ The Result should look something like this:
 
 <img src= https://github.com/trns1997/slam_nav/blob/master/media/loc.gif/>
 
+## Under the Hood
+
+### Nodes, Topics and TF_tree for Mapping
+```
+rosrun rqt_graph rqt_graph
+```
+<img src=https://github.com/trns1997/slam_nav/blob/master/media/map_graph.png>
+```
+rosrun rqt_tf_tree rqt_tf_tree
+```
+<img src=https://github.com/trns1997/slam_nav/blob/master/media/map_tf.png>
+
+### Nodes, Topics and TF_tree for Localization
+```
+rosrun rqt_graph rqt_graph
+```
+<img src=https://github.com/trns1997/slam_nav/blob/master/media/nav_graph.png>
+```
+rosrun rqt_tf_tree rqt_tf_tree
+```
+<img src=https://github.com/trns1997/slam_nav/blob/master/media/nav_tf.png>
+
+## Team Members
+* **Thomas Narayana Swamy** - 10709057
+* **Felippe Francesconi** - 10527268
+* **Rudolfo Félix**  - 10732154
+
+
