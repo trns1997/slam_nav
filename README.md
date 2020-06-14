@@ -64,6 +64,7 @@ The Result should look something like this:
 rosrun rqt_graph rqt_graph
 ```
 <img src=https://github.com/trns1997/slam_nav/blob/master/media/map_graph.png>
+
 ```
 rosrun rqt_tf_tree rqt_tf_tree
 ```
@@ -73,7 +74,9 @@ rosrun rqt_tf_tree rqt_tf_tree
 ```
 rosrun rqt_graph rqt_graph
 ```
+
 <img src=https://github.com/trns1997/slam_nav/blob/master/media/nav_graph.png>
+
 ```
 rosrun rqt_tf_tree rqt_tf_tree
 ```
