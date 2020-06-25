@@ -25,6 +25,7 @@ Replace `DISTRO` with your ros version, so if you are using melodic the `DISTRO=
 sudo apt-get install ros-DISTRO-pointcloud-to-laserscan
 sudo apt-get install ros-DISTRO-imu-filter-madgwick
 sudo apt-get install ros-DISTRO-gmapping
+sudo apt-get install ros-DISTRO-map-server
 sudo apt-get install ros-DISTRO-robot-localization
 ```
 
