@@ -62,9 +62,9 @@ roslaunch slam_nav build_map_o.launch
 roslaunch slam_nav nav_map.launch map_file:= PATH_TO_CATKIN_WS/src/slam_nav/maps/NAME_OF_MAP_FILE.yaml
 
 Example:
-roslaunch slam_nav nav_map.launch map_file:= PATH_TO_CATKIN_WS/src/slam_nav/maps/built_map_09.yaml
+roslaunch slam_nav nav_map.launch map_file:= PATH_TO_CATKIN_WS/src/slam_nav/maps/built_map_09_bag.yaml
 ```
-If no `map_file` is spcified then it defaults to `PATH_TO_CATKIN_WS/src/slam_nav/maps/built_map_09.yaml`
+If no `map_file` is spcified then it defaults to `PATH_TO_CATKIN_WS/src/slam_nav/maps/built_map_09_bag.yaml`
 
 *Terminal 2*
 ```
